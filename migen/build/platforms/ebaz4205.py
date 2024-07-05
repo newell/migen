@@ -113,7 +113,7 @@ _io = [
 ]
 
 # DATA1-3 2x10 2.0mm Pitch
-# J3 and J5 1x4 2.54mm Pitch (opto-isolators if populated)
+# J3 and J5 1x4 2.54mm Pitch
 _connectors = [
     (
         "DATA1",
