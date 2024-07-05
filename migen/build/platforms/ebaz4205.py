@@ -100,7 +100,7 @@ _io = [
         IOStandard("LVCMOS33"),
         Misc("SLEW=FAST"),
     ),
-    # JTAG -- this is just for infomration, Do Not Request
+    # JTAG -- For information purposes, Do Not Request
     (
         "jtag",
         0,
