@@ -100,16 +100,6 @@ _io = [
         IOStandard("LVCMOS33"),
         Misc("SLEW=FAST"),
     ),
-    # JTAG -- For information purposes, Do Not Request
-    (
-        "jtag",
-        0,
-        Subsignal("tms", Pins("J6")),
-        Subsignal("tdo", Pins("F6")),
-        Subsignal("tdi", Pins("G6")),
-        Subsignal("tck", Pins("F9")),
-        IOStandard("LVCMOS33"),
-    ),
 ]
 
 # DATA1-3 2x10 2.0mm Pitch
