@@ -63,7 +63,6 @@ _io = [
     ),
 ]
 
-
 # DATA1-3 2x10 2.0mm Pitch
 # J3 and J5 1x4 2.54mm Pitch
 _connectors = [
@@ -138,9 +137,64 @@ _connectors = [
     ),
 ]
 
+_ps = [
+    (
+        "ps",
+        0,
+        Subsignal("clk", Pins("E7"), IOStandard("LVCMOS33"), Misc("SLEW=FAST")),
+        Subsignal("por_b", Pins("C7"), IOStandard("LVCMOS33"), Misc("SLEW=FAST")),
+        Subsignal("srst_b", Pins("B10"), IOStandard("LVCMOS18"), Misc("SLEW=FAST")),
+    )
+]
+
+_ddr = [
+    (
+        "ddr",
+        0,
+        Subsignal(
+            "a",
+            Pins("N2 K2 M3 K3 M4 L1 L4 K4 K1 J4 F5 G4 E4 D4 F4"),
+            IOStandard("SSTL15"),
+        ),
+        Subsignal("ba", Pins("L5 R4 J5"), IOStandard("SSTL15")),
+        Subsignal("cas_n", Pins("P5"), IOStandard("SSTL15")),
+        Subsignal("cke", Pins("N3"), IOStandard("SSTL15")),
+        Subsignal("cs_n", Pins("N1"), IOStandard("SSTL15")),
+        Subsignal("ck_n", Pins("M2"), IOStandard("DIFF_SSTL15"), Misc("SLEW=FAST")),
+        Subsignal("ck_p", Pins("L2"), IOStandard("DIFF_SSTL15"), Misc("SLEW=FAST")),
+        # Pins "T1 Y1" not connected
+        Subsignal("dm", Pins("A1 F1"), IOStandard("SSTL15_T_DCI"), Misc("SLEW=FAST")),
+        Subsignal(
+            "dq",
+            Pins("C3 B3 A2 A4 D3 D1 C1 E1 E2 E3 G3 H3 J3 H2 H1 J1"),
+            # Pins "P1 P3 R3 R1 T4 U4 U2 U3 V1 Y3 W1 Y4 Y2 W3 V2 V3" not connected
+            IOStandard("SSTL15_T_DCI"),
+            Misc("SLEW=FAST"),
+        ),
+        Subsignal(
+            "dqs_n",
+            Pins("B2 F2"),  # Pins "T2 W4" not connected
+            IOStandard("DIFF_SSTL15_T_DCI"),
+            Misc("SLEW=FAST"),
+        ),
+        Subsignal(
+            "dqs_p",
+            Pins("C2 G2"),  # Pins "R2 W5" not connected
+            IOStandard("DIFF_SSTL15_T_DCI"),
+            Misc("SLEW=FAST"),
+        ),
+        Subsignal("vrn", Pins("G5"), IOStandard("SSTL15_T_DCI"), Misc("SLEW=FAST")),
+        Subsignal("vrp", Pins("H5"), IOStandard("SSTL15_T_DCI"), Misc("SLEW=FAST")),
+        Subsignal("drst_n", Pins("B4"), IOStandard("SSTL15"), Misc("SLEW=FAST")),
+        Subsignal("odt", Pins("N5"), IOStandard("SSTL15")),
+        Subsignal("ras_n", Pins("P4"), IOStandard("SSTL15")),
+        Subsignal("we_n", Pins("M5"), IOStandard("SSTL15")),
+    )
+]
+
 
 class Platform(XilinxPlatform):
     def __init__(self):
         XilinxPlatform.__init__(
-            self, "xc7z010-clg400-1", _io, _connectors, toolchain="vivado"
+            self, "xc7z010-clg400-1", _io, _connectors, _ps, _ddr, toolchain="vivado"
         )
